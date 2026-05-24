@@ -1,0 +1,102 @@
+# One Piece Characters
+Een interactieve single-page webapplicatie over personages uit One Piece.
+Gebouwd met vanilla JavaScript en Vite, gebruikmakend van de One Piece API.
+
+## Functionaliteiten
+- Personages ophalen van de One Piece API
+- Zoeken op naam
+- Filteren op status, crew en devil fruit
+- Sorteren op naam en bounty
+- Favorieten opslaan tussen sessies
+- Dark/light mode met localStorage
+- Animaties via IntersectionObserver
+
+## Gebruikte API
+https://api-onepiece.com/en/documentation/13-character (link website)
+https://api.api-onepiece.com/v2/characters/en (API)
+
+## Technische vereisten
+
+### DOM Manipulatie
+- **Elementen selecteren:** main.js - lijn 6-11 (`document.querySelector`)
+- **Elementen manipuleren:** main.js - lijn 72 (`karaktersContainer.innerHTML`)
+- **Events koppelen:** main.js - lijn 62 (`addEventListener`)
+
+### Modern JavaScript
+- **Constanten:** main.js - lijn 4 (`const API_URL`)
+- **Template literals:** main.js - lijn 52-61 (`kaart.innerHTML = \`...\``)
+- **Iteratie over arrays:** main.js - lijn 78 (`forEach`)
+- **Array methodes:** main.js - lijn 93 (`filter`, `map`, `sort`)
+- **Arrow functions:** main.js - lijn 47 (`const maakKaraktersKaart = (karakter) => {`)
+- **Ternary operator:** main.js - lijn 246 (`isDark ? 'light' : 'dark'`)
+- **Callback functions:** main.js - lijn 62 (`addEventListener('click', () => {`)
+- **Promises:** main.js - lijn 161 (`fetch` returns a Promise)
+- **Async & Await:** main.js - lijn 159 (`const haalKaraktersOp = async ()`)
+- **Observer API:** main.js - lijn 228 (`new IntersectionObserver`)
+
+### Data & API
+- **Fetch:** main.js - lijn 163 (`await fetch(API_URL)`)
+- **JSON manipuleren:** main.js - lijn 170 (`await response.json()`)
+
+### Opslag & Validatie
+- **Formuliervalidatie:** main.js - lijn 118 (`zoekbalk.value.trim()`)
+- **LocalStorage:** main.js - lijn 182 (`localStorage.setItem`)
+
+### Tooling
+- Project opgezet met **Vite**
+
+## Installatiehandleiding
+
+### Vereisten
+- [Node.js](https://nodejs.org/)
+- [Git](https://git-scm.com/)
+
+### Stappen
+
+1. **Clone de repository**
+```bash
+   git clone https://github.com/Phoumy-Saymoungkhoune/Onepiece-website.git
+```
+
+2. **Ga naar de projectmap**
+```bash
+   cd jouw-repo-naam
+```
+
+3. **Installeer de dependencies**
+```bash
+   npm install
+```
+
+4. **Start de development server**
+```bash
+   npm run dev
+```
+
+5. **Open de app in je browser**
+```
+   http://localhost:5173
+```
+
+## Screenshots
+*Overzicht van alle personages met zoekbalk, filters en sortering.*
+<img width="1902" height="1026" alt="image" src="https://github.com/user-attachments/assets/bd5781cd-cad6-4f9b-b91b-88c5c0782e37" />
+Dark mode met actieve crew en status filter, en de favorieten sectie onderaan.
+<img width="1898" height="1029" alt="image" src="https://github.com/user-attachments/assets/f70ac441-364e-4e89-90bc-2f90af94f0ac" />
+
+## Gebruikte bronnen
+
+### API
+- [One Piece API](https://api.api-onepiece.com/v2/characters/en)
+
+- [One Piece API documentatie](https://api-onepiece.com/en/documentation)
+
+### Afbeeldingen
+- [One Piece Wiki](https://onepiece.fandom.com)
+
+### Documentatie
+- [MDN Web Docs](https://developer.mozilla.org/en-US/)
+- [Vite documentatie](https://vitejs.dev/)
+
+### AI
+- Claude (Anthropic) - [chatlog bijgevoegd]
