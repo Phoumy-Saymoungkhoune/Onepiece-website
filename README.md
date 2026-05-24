@@ -48,8 +48,8 @@ https://api.api-onepiece.com/v2/characters/en (API)
 ## Installatiehandleiding
 
 ### Vereisten
-- [Node.js]
-- [Git]
+- [Node.js](https://nodejs.org/)
+- [Git](https://git-scm.com/)
 
 ### Stappen
 
@@ -77,6 +77,10 @@ https://api.api-onepiece.com/v2/characters/en (API)
 ```
    http://localhost:5173
 ```
+
+## Screenshots
+<img width="1902" height="1026" alt="image" src="https://github.com/user-attachments/assets/bd5781cd-cad6-4f9b-b91b-88c5c0782e37" />
+<img width="1761" height="842" alt="image" src="https://github.com/user-attachments/assets/778be7fb-60b3-480b-af7e-24d91a00bd3e" />
 
 ## Gebruikte bronnen
 
