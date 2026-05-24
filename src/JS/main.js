@@ -7,6 +7,9 @@ const API_URL = 'https://api.api-onepiece.com/v2/characters/en';
 const karaktersContainer = document.querySelector('#karakters-container');
 const zoekbalk = document.querySelector('#zoekbalk');
 const sorteerSelect = document.querySelector('#sorteer');
+const filterStatus = document.querySelector('#filter-status');
+const filterFruit = document.querySelector('#filter-fruit');
+const filterCrew = document.querySelector('#filter-crew');
 
 // Gewenste karakters
 const gewensteKarakters = [
@@ -67,6 +70,87 @@ const toonKarakters = (karakters) => {
     });
 };
 
+// Crew filter vullen vanuit de data
+const vulCrewFilter = (karakters) => {
+    const crews = [...new Set(karakters
+        .map(k => k.crew?.name)
+        .filter(Boolean)
+    )].sort();
+
+    crews.forEach(crew => {
+        const optie = document.createElement('option');
+        optie.value = crew;
+        optie.textContent = crew;
+        filterCrew.appendChild(optie);
+    });
+};
+
+// Sorteer functie
+const sorteerKarakters = (karakters) => {
+    const keuze = sorteerSelect.value;
+    const parseBounty = (bounty) => {
+    if (!bounty) return 0;
+    return parseInt(bounty.replace(/\./g, ''));
+};
+
+    if (keuze === 'naam-az') {
+        return [...karakters].sort((a, b) => a.name.localeCompare(b.name));
+    } else if (keuze === 'naam-za') {
+        return [...karakters].sort((a, b) => b.name.localeCompare(a.name));
+    } 
+    
+    else if (keuze === 'bounty-hoog') {
+    return [...karakters].sort((a, b) => parseBounty(b.bounty) - parseBounty(a.bounty));
+} else if (keuze === 'bounty-laag') {
+    return [...karakters].sort((a, b) => parseBounty(a.bounty) - parseBounty(b.bounty));
+}
+    return karakters;
+};
+
+// Filter en zoek functie
+const filterEnZoek = () => {
+    const zoekterm = zoekbalk.value.toLowerCase();
+    const statusKeuze = filterStatus.value;
+    const fruitKeuze = filterFruit.value;
+    const crewKeuze = filterCrew.value;
+
+    let resultaat = alleKarakters;
+
+    // Filter op naam
+    resultaat = resultaat.filter(k =>
+        k.name.toLowerCase().includes(zoekterm)
+    );
+
+    // Filter op status
+    if (statusKeuze !== 'all') {
+        resultaat = resultaat.filter(k => k.status === statusKeuze);
+    }
+
+    // Filter op devil fruit
+    if (fruitKeuze === 'ja') {
+        resultaat = resultaat.filter(k => k.fruit !== null);
+    } else if (fruitKeuze === 'nee') {
+        resultaat = resultaat.filter(k => k.fruit === null);
+    }
+
+    // Filter op crew
+    if (crewKeuze !== 'all') {
+        resultaat = resultaat.filter(k => k.crew?.name === crewKeuze);
+    }
+
+    // Sorteer
+    resultaat = sorteerKarakters(resultaat);
+
+    toonKarakters(resultaat);
+};
+
+// Luisteren naar alle filters
+zoekbalk.addEventListener('input', filterEnZoek);
+sorteerSelect.addEventListener('change', filterEnZoek);
+filterStatus.addEventListener('change', filterEnZoek);
+filterFruit.addEventListener('change', filterEnZoek);
+filterCrew.addEventListener('change', filterEnZoek);
+
 // Data ophalen van de API
 const haalKaraktersOp = async () => {
     try {
@@ -81,6 +165,7 @@ const haalKaraktersOp = async () => {
         const data = await response.json();
         alleKarakters = data.filter(k => gewensteKarakters.includes(k.name));
 
+        vulCrewFilter(alleKarakters);
         toonKarakters(alleKarakters);
 
     } catch (fout) {

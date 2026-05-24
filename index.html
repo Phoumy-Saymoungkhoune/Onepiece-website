@@ -15,26 +15,41 @@
 
     <main>
 
-      <!-- Zoekbalk en filters -->
+      <!-- Search, filter & sort -->
       <section class="controls">
         <input type="text" id="zoekbalk" placeholder="Search a character..." />
+
+        <select id="filter-crew">
+          <option value="all">All crews</option>
+        </select>
+
+        <select id="filter-status">
+          <option value="all">All statuses</option>
+          <option value="living">Alive</option>
+          <option value="deceased">Deceased</option>
+        </select>
+
+        <select id="filter-fruit">
+          <option value="all">All characters</option>
+          <option value="ja">Has Devil Fruit</option>
+          <option value="nee">No Devil Fruit</option>
+        </select>
+
         <select id="sorteer">
           <option value="naam-az">Name A-Z</option>
           <option value="naam-za">Name Z-A</option>
+          <option value="bounty-hoog">Bounty ↓</option>
+          <option value="bounty-laag">Bounty ↑</option>
         </select>
       </section>
 
-      <!-- Karakters grid -->
-      <section id="karakters-container">
-        <!-- Karakters komen hier via JavaScript -->
-      </section>
+      <!-- Characters grid -->
+      <section id="karakters-container"></section>
 
-      <!-- Favorieten sectie -->
+      <!-- Favorites -->
       <section id="favorieten-sectie">
         <h2>⭐ My Favorites</h2>
-        <section id="favorieten-container">
-          <!-- Favorieten komen hier via JavaScript -->
-        </section>
+        <div id="favorieten-container"></div>
       </section>
 
     </main>
