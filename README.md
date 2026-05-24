@@ -2,7 +2,7 @@
 Een interactieve single-page webapplicatie over personages uit One Piece.
 Gebouwd met vanilla JavaScript en Vite, gebruikmakend van de One Piece API.
 
-# Functionaliteiten
+## Functionaliteiten
 - Personages ophalen van de One Piece API
 - Zoeken op naam
 - Filteren op status, crew en devil fruit
