@@ -44,3 +44,36 @@ https://api.api-onepiece.com/v2/characters/en (API)
 
 ### Tooling
 - Project opgezet met **Vite**
+
+## Installatiehandleiding
+
+### Vereisten
+- Node.js
+- Git
+
+### Stappen
+
+1. **Clone de repository**
+```bash
+   git clone https://github.com/Phoumy-Saymoungkhoune/Onepiece-website.git
+```
+
+2. **Ga naar de projectmap**
+```bash
+   cd jouw-repo-naam
+```
+
+3. **Installeer de dependencies**
+```bash
+   npm install
+```
+
+4. **Start de development server**
+```bash
+   npm run dev
+```
+
+5. **Open de app in je browser**
+```
+   http://localhost:5173
+```
