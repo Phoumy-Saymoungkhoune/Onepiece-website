@@ -87,7 +87,7 @@ Dark mode met actieve crew en status filter, en de favorieten sectie onderaan.
 ## Gebruikte bronnen
 
 ### API
-- [One Piece API](https://api.api-onepiece.com/v2/characters/en)
+- [One Piece API](https://api.api-onepiece.com/v2/characters/en)  
 - [One Piece API documentatie](https://api-onepiece.com/en/documentation)
 
 ### Afbeeldingen
