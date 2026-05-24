@@ -1,13 +1,48 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mijn-project</title>
+    <title>One Piece Characters</title>
+    <link rel="stylesheet" href="/src/css/style.css" />
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+
+    <header>
+      <h1>🏴‍☠️ One Piece Characters</h1>
+      <p>Discover characters from the One Piece world</p>
+    </header>
+
+    <main>
+
+      <!-- Zoekbalk en filters -->
+      <section class="controls">
+        <input type="text" id="zoekbalk" placeholder="Search a character..." />
+        <select id="sorteer">
+          <option value="naam-az">Name A-Z</option>
+          <option value="naam-za">Name Z-A</option>
+        </select>
+      </section>
+
+      <!-- Karakters grid -->
+      <section id="karakters-container">
+        <!-- Karakters komen hier via JavaScript -->
+      </section>
+
+      <!-- Favorieten sectie -->
+      <section id="favorieten-sectie">
+        <h2>⭐ My Favorites</h2>
+        <section id="favorieten-container">
+          <!-- Favorieten komen hier via JavaScript -->
+        </section>
+      </section>
+
+    </main>
+
+    <footer>
+      <p>Made with ❤️ | Data via One Piece API</p>
+    </footer>
+
+    <script type="module" src="/src/js/main.js"></script>
   </body>
 </html>
