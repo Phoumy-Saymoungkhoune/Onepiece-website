@@ -79,8 +79,10 @@ https://api.api-onepiece.com/v2/characters/en (API)
 ```
 
 ## Screenshots
+*Overzicht van alle personages met zoekbalk, filters en sortering.*
 <img width="1902" height="1026" alt="image" src="https://github.com/user-attachments/assets/bd5781cd-cad6-4f9b-b91b-88c5c0782e37" />
-<img width="1761" height="842" alt="image" src="https://github.com/user-attachments/assets/778be7fb-60b3-480b-af7e-24d91a00bd3e" />
+Dark mode met actieve crew en status filter, en de favorieten sectie onderaan.
+<img width="1898" height="1029" alt="image" src="https://github.com/user-attachments/assets/f70ac441-364e-4e89-90bc-2f90af94f0ac" />
 
 ## Gebruikte bronnen
 
