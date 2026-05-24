@@ -48,8 +48,8 @@ https://api.api-onepiece.com/v2/characters/en (API)
 ## Installatiehandleiding
 
 ### Vereisten
-- Node.js
-- Git
+- [Node.js]
+- [Git]
 
 ### Stappen
 
@@ -77,3 +77,19 @@ https://api.api-onepiece.com/v2/characters/en (API)
 ```
    http://localhost:5173
 ```
+
+## Gebruikte bronnen
+
+### API
+- [One Piece API](https://api.api-onepiece.com/v2/characters/en)
+- [One Piece API documentatie](https://api-onepiece.com/en/documentation)
+
+### Afbeeldingen
+- [One Piece Wiki](https://onepiece.fandom.com)
+
+### Documentatie
+- [MDN Web Docs](https://developer.mozilla.org/en-US/)
+- [Vite documentatie](https://vitejs.dev/)
+
+### AI
+- Claude (Anthropic) - [chatlog bijgevoegd]
