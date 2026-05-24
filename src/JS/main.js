@@ -225,6 +225,34 @@ const toonFavorieten = () => {
         favorietenContainer.appendChild(kaart);
     });
 };
+// Thema knop selecteren
+const themaKnop = document.querySelector('#theme-toggle');
+
+// Thema toepassen op de pagina
+const pasThemaToe = (thema) => {
+    if (thema === 'dark') {
+        document.body.classList.add('dark-mode');
+        themaKnop.textContent = '☀️ Light mode';
+    } else {
+        document.body.classList.remove('dark-mode');
+        themaKnop.textContent = '🌙 Dark mode';
+    }
+};
+
+// Thema wisselen als gebruiker op knop klikt
+const wisselThema = () => {
+    const isDark = document.body.classList.contains('dark-mode');
+    const nieuwThema = isDark ? 'light' : 'dark';
+    localStorage.setItem('thema', nieuwThema);
+    pasThemaToe(nieuwThema);
+};
+
+// Opgeslagen thema laden bij opstarten
+const opgeslagenThema = localStorage.getItem('thema') ?? 'light';
+pasThemaToe(opgeslagenThema);
+
+// Luisteren naar knop klik
+themaKnop.addEventListener('click', wisselThema);
 
 // App starten
 window.addEventListener('load', () => {
