@@ -12,18 +12,31 @@ const filterFruit = document.querySelector('#filter-fruit');
 const filterCrew = document.querySelector('#filter-crew');
 
 // Gewenste karakters
-const gewensteKarakters = [
-    // Piraten (20)
-    'Monkey D Luffy', 'Roronoa Zoro', 'Sanji',
-    'Nico Robin', 'Jinbe', 'Brook', 'Shanks',
-    'Marchall D. Teach / Barbe Noire', 'Edward Newgate / Barbe Blanche',
-    'Portgas D. Ace', 'Don Quijote Doflamingo', 'Crocodile',
-    'Kaido', 'Charlotte Linlin / Big Mom', 'Eustass Kidd',
-    'Trafalgar D. Water Law', 'Baggy / Le Clown',
-    'Cavendish', 'Bartolomeo', 'Dracule Mihawk',
-    // Revolutionaire Leger (2)
-    'Sabo', 'Monkey D. Dragon'
-];
+const gewensteIds = [1, 2, 54, 59, 81, 85, 96, 97, 187, 188, 247, 258, 259, 290, 365, 662, 661, 687, 690, 761];
+
+// Foto's per karakter id
+const karakterFotos = {
+    1: '/src/assets/Luffy.jpg',
+    2: '/src/assets/Zoro.jpg',
+    54: '/src/assets/Law.jpg',
+    59: '/src/assets/Kid.jpg',
+    81: '/src/assets/Mihawk.jpg',
+    85: '/src/assets/Shanks.jpg',
+    96: '/src/assets/BigMom.jpg',
+    97: '/src/assets/Katakuri.jpg',
+    187: '/src/assets/Kaido.jpg',
+    188: '/src/assets/King.jpg',
+    247: '/src/assets/Teach.jpg',
+    258: '/src/assets/Roger.jpg',
+    259: '/src/assets/Rayleigh.jpg',
+    290: '/src/assets/Ace.jpg',
+    365: '/src/assets/Doflamingo.jpg',
+    662: '/src/assets/Sabo.jpg',
+    661: '/src/assets/Dragon.jpg',
+    687: '/src/assets/Kuzan.jpg',
+    690: '/src/assets/Kuma.jpg',
+    761: '/src/assets/Vegapunk.jpg'
+};
 
 // Alle karakters opslaan voor later filteren
 let alleKarakters = [];
@@ -35,6 +48,7 @@ const maakKaraktersKaart = (karakter) => {
 
     kaart.innerHTML = `
         <div class="kaart-info">
+            <img src="${karakterFotos[karakter.id] ?? ''}" alt="${karakter.name}" class="karakter-foto">
             <h2>${karakter.name}</h2>
             <p><strong>Status:</strong> ${karakter.status ?? 'Unknown'}</p>
             <p><strong>Age:</strong> ${karakter.age ?? 'Unknown'}</p>
@@ -68,12 +82,14 @@ const toonKarakters = (karakters) => {
         const kaart = maakKaraktersKaart(karakter);
         karaktersContainer.appendChild(kaart);
     });
+    observeerKaartjes();
 };
 
 // Crew filter vullen vanuit de data
 const vulCrewFilter = (karakters) => {
+    filterCrew.innerHTML = '<option value="all">All crews</option>';
     const crews = [...new Set(karakters
-        .map(k => k.crew?.name)
+        .map(k => k.crew?.name) 
         .filter(Boolean)
     )].sort();
 
@@ -123,14 +139,21 @@ const filterEnZoek = () => {
 
     // Filter op status
     if (statusKeuze !== 'all') {
-        resultaat = resultaat.filter(k => k.status === statusKeuze);
+        const levendWaarden = ['living', 'vivant'];
+        const doodWaarden = ['deceased', 'dead'];
+
+        if (statusKeuze === 'living') {
+            resultaat = resultaat.filter(k => levendWaarden.includes(k.status));
+        } else if (statusKeuze === 'deceased') {
+            resultaat = resultaat.filter(k => doodWaarden.includes(k.status));
+        }
     }
 
     // Filter op devil fruit
     if (fruitKeuze === 'ja') {
-        resultaat = resultaat.filter(k => k.fruit !== null);
+        resultaat = resultaat.filter(k => k.fruit !== null && k.fruit !== undefined);
     } else if (fruitKeuze === 'nee') {
-        resultaat = resultaat.filter(k => k.fruit === null);
+        resultaat = resultaat.filter(k => k.fruit === null || k.fruit === undefined);
     }
 
     // Filter op crew
@@ -163,7 +186,7 @@ const haalKaraktersOp = async () => {
         }
 
         const data = await response.json();
-        alleKarakters = data.filter(k => gewensteKarakters.includes(k.name));
+        alleKarakters = data.filter(k => gewensteIds.includes(k.id));
 
         vulCrewFilter(alleKarakters);
         toonKarakters(alleKarakters);
@@ -254,9 +277,28 @@ pasThemaToe(opgeslagenThema);
 // Luisteren naar knop klik
 themaKnop.addEventListener('click', wisselThema);
 
+// Observer API
+const kaartjeInBeeld = (entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('zichtbaar');
+            observer.unobserve(entry.target);
+        }
+    });
+};
+
+const observer = new IntersectionObserver(kaartjeInBeeld, {
+    threshold: 0.1
+});
+
+// Koppel de observer aan elk karakter kaartje
+const observeerKaartjes = () => {
+    const kaartjes = document.querySelectorAll('.karakter-kaart');
+    kaartjes.forEach(kaart => observer.observe(kaart));
+};
+
 // App starten
 window.addEventListener('load', () => {
     haalKaraktersOp();
+    toonFavorieten();
 });
-// Favorieten laden bij opstarten
-toonFavorieten();
