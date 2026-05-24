@@ -133,8 +133,9 @@ const filterEnZoek = () => {
     let resultaat = alleKarakters;
 
     // Filter op naam
+    const zoektermTrimmed = zoekterm.trim();
     resultaat = resultaat.filter(k =>
-        k.name.toLowerCase().includes(zoekterm)
+        k.name.toLowerCase().includes(zoektermTrimmed)
     );
 
     // Filter op status
@@ -229,6 +230,7 @@ const toonFavorieten = () => {
     favorieten.forEach(karakter => {
         const kaart = document.createElement('article');
         kaart.classList.add('karakter-kaart');
+        kaart.classList.add('zichtbaar');
 
         kaart.innerHTML = `
             <div class="kaart-info">
@@ -255,8 +257,10 @@ const themaKnop = document.querySelector('#theme-toggle');
 const pasThemaToe = (thema) => {
     if (thema === 'dark') {
         document.body.classList.add('dark-mode');
+        document.body.classList.remove('light-mode');
         themaKnop.textContent = '☀️ Light mode';
     } else {
+        document.body.classList.add('light-mode');
         document.body.classList.remove('dark-mode');
         themaKnop.textContent = '🌙 Dark mode';
     }

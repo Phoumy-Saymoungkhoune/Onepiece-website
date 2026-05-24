@@ -1,17 +1,275 @@
-/* Dark mode */
-body.dark-mode {
-    background-color: #1a1a2e;
+/* ===== BASIS ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #0a0a0a;
+    color: #f0f0f0;
+    min-height: 100vh;
+}
+
+/* ===== HEADER ===== */
+header {
+    background-color: #1a0a0a;
+    border-bottom: 3px solid #c0392b;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #f39c12;
+    text-shadow: 2px 2px 4px #000;
+}
+
+header p {
+    color: #aaa;
+    margin-top: 5px;
+}
+
+#theme-toggle {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #c0392b;
     color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
 }
 
-/* Kaartjes fade in animatie */
+#theme-toggle:hover {
+    background-color: #e74c3c;
+}
+
+/* ===== CONTROLS ===== */
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px;
+    background-color: #111;
+    justify-content: center;
+}
+
+.controls input,
+.controls select {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid #c0392b;
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.controls input:focus,
+.controls select:focus {
+    outline: none;
+    border-color: #f39c12;
+}
+
+/* ===== KARAKTERS GRID ===== */
+#karakters-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 30px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ===== KAART ===== */
 .karakter-kaart {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.5s, transform 0.5s;
-}
-
-.karakter-kaart.fade-in {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s, opacity 0.5s;
     opacity: 0;
     transform: translateY(20px);
+    cursor: pointer;
+}
+
+.karakter-kaart.zichtbaar {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.karakter-kaart:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(192, 57, 43, 0.5);
+    border-color: #c0392b;
+}
+
+/* ===== FOTO ===== */
+.karakter-foto {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+}
+
+/* ===== KAART INFO ===== */
+.kaart-info {
+    padding: 15px;
+}
+
+.kaart-info h2 {
+    font-size: 1.1rem;
+    color: #f39c12;
+    margin-bottom: 10px;
+}
+
+.kaart-info p {
+    font-size: 0.85rem;
+    color: #ccc;
+    margin-bottom: 5px;
+}
+
+.kaart-info strong {
+    color: #f0f0f0;
+}
+
+/* ===== KNOPPEN ===== */
+.favoriet-knop {
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px;
+    background-color: #c0392b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.favoriet-knop:hover {
+    background-color: #e74c3c;
+    transform: scale(1.05);
+}
+
+.verwijder-knop {
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background-color 0.3s;
+}
+
+.verwijder-knop:hover {
+    background-color: #555;
+}
+
+/* ===== FAVORIETEN ===== */
+#favorieten-sectie {
+    padding: 30px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    border-top: 3px solid #c0392b;
+}
+
+#favorieten-sectie h2 {
+    color: #f39c12;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+#favorieten-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1a0a0a;
+    border-top: 3px solid #c0392b;
+    color: #aaa;
+    margin-top: 40px;
+}
+
+/* ===== LIGHT MODE ===== */
+body.light-mode {
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+body.light-mode header {
+    background-color: #f5f5f5;
+}
+
+body.light-mode .controls {
+    background-color: #eeeeee;
+}
+
+body.light-mode .controls input,
+body.light-mode .controls select {
+    background-color: #ffffff;
+    color: #111;
+    border-color: #c0392b;
+}
+
+body.light-mode .karakter-kaart {
+    background-color: #e0e0e0;
+    border-color: #ccc;
+}
+
+body.light-mode .kaart-info p {
+    color: #444;
+}
+
+body.light-mode .kaart-info strong {
+    color: #111;
+}
+
+body.light-mode .controls input,
+body.light-mode .controls select {
+    background-color: #f0f0f0;
+    color: #111;
+}
+
+/* ===== DARK MODE ===== */
+body.dark-mode {
+    background-color: #050505;
+}
+
+body.dark-mode .karakter-kaart {
+    background-color: #111;
+    border-color: #222;
+}
+
+body.dark-mode .controls {
+    background-color: #0a0a0a;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #karakters-container {
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
 }
