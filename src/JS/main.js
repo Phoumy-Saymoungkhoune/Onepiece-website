@@ -173,8 +173,62 @@ const haalKaraktersOp = async () => {
         console.error('Fout bij ophalen:', fout);
     }
 };
+// Favorieten array
+let favorieten = JSON.parse(localStorage.getItem('favorieten')) ?? [];
+
+// Favorieten container selecteren
+const favorietenContainer = document.querySelector('#favorieten-container');
+
+// Favoriet toevoegen of verwijderen
+const voegToeAanFavorieten = (karakter) => {
+    const bestaatAl = favorieten.some(f => f.id === karakter.id);
+
+    if (bestaatAl) {
+        favorieten = favorieten.filter(f => f.id !== karakter.id);
+    } else {
+        favorieten.push(karakter);
+    }
+
+    // Opslaan in LocalStorage
+    localStorage.setItem('favorieten', JSON.stringify(favorieten));
+    toonFavorieten();
+};
+
+// Favorieten tonen in de DOM
+const toonFavorieten = () => {
+    favorietenContainer.innerHTML = '';
+
+    if (favorieten.length === 0) {
+        favorietenContainer.innerHTML = '<p>No favorites yet.</p>';
+        return;
+    }
+
+    favorieten.forEach(karakter => {
+        const kaart = document.createElement('article');
+        kaart.classList.add('karakter-kaart');
+
+        kaart.innerHTML = `
+            <div class="kaart-info">
+                <h2>${karakter.name}</h2>
+                <p><strong>Crew:</strong> ${karakter.crew?.name ?? 'Unknown'}</p>
+                <p><strong>Bounty:</strong> ${karakter.bounty ?? 'Unknown'}</p>
+                <button class="verwijder-knop" data-id="${karakter.id}">❌ Remove</button>
+            </div>
+        `;
+
+        // Verwijder knop event
+        const verwijderKnop = kaart.querySelector('.verwijder-knop');
+        verwijderKnop.addEventListener('click', () => {
+            voegToeAanFavorieten(karakter);
+        });
+
+        favorietenContainer.appendChild(kaart);
+    });
+};
 
 // App starten
 window.addEventListener('load', () => {
     haalKaraktersOp();
 });
+// Favorieten laden bij opstarten
+toonFavorieten();
