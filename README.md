@@ -28,19 +28,19 @@ https://api.api-onepiece.com/v2/characters/en (API)
 - **Iteratie over arrays:** main.js - lijn 78 (`forEach`)
 - **Array methodes:** main.js - lijn 93 (`filter`, `map`, `sort`)
 - **Arrow functions:** main.js - lijn 47 (`const maakKaraktersKaart = (karakter) => {`)
-- **Ternary operator:** main.js - lijn 53 (`karakter.status ?? 'Unknown'`)
+- **Ternary operator:** main.js - lijn 246 (`isDark ? 'light' : 'dark'`)
 - **Callback functions:** main.js - lijn 62 (`addEventListener('click', () => {`)
-- **Promises:** main.js - lijn 163 (`fetch` returns a Promise)
-- **Async & Await:** main.js - lijn 161 (`const haalKaraktersOp = async ()`)
-- **Observer API:** main.js - lijn 243 (`new IntersectionObserver`)
+- **Promises:** main.js - lijn 161 (`fetch` returns a Promise)
+- **Async & Await:** main.js - lijn 159 (`const haalKaraktersOp = async ()`)
+- **Observer API:** main.js - lijn 228 (`new IntersectionObserver`)
 
 ### Data & API
-- **Fetch:** main.js - lijn 165 (`await fetch(API_URL)`)
-- **JSON manipuleren:** main.js - lijn 172 (`await response.json()`)
+- **Fetch:** main.js - lijn 163 (`await fetch(API_URL)`)
+- **JSON manipuleren:** main.js - lijn 170 (`await response.json()`)
 
 ### Opslag & Validatie
 - **Formuliervalidatie:** main.js - lijn 118 (`zoekbalk.value.trim()`)
-- **LocalStorage:** main.js - lijn 184 (`localStorage.setItem`)
+- **LocalStorage:** main.js - lijn 182 (`localStorage.setItem`)
 
 ### Tooling
 - Project opgezet met **Vite**
